@@ -18,12 +18,23 @@ export default class TodoList extends Component {
 			list: [ ...prevState.list, newListItem ]
 		}));
 	};
+
+	deleteItem = id => {
+		this.setState({
+			list: this.state.list.filter(item => item.id !== id)
+		});
+	};
 	render() {
 		const list = this.state.list.map(item => (
-			<ListItem content={item.content} id={item.id} key={item.id} />
+			<ListItem
+				content={item.content}
+				id={item.id}
+				key={item.id}
+				deleteItem={this.deleteItem}
+			/>
 		));
 		return (
-			<div>
+			<div className="ToDoList">
 				<NewToDoForm handleItem={this.addListItem} />
 				{list}
 			</div>

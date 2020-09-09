@@ -16,7 +16,7 @@ export default class NewToDoForm extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="NewToDoForm">
 				<form onSubmit={this.handleSubmit}>
 					<input
 						type="text"
