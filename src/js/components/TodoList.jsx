@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ListItem from './ListItem';
+import { v4 as uuid } from 'uuid';
+import NewToDoForm from './NewToDoForm';
 
 export default class TodoList extends Component {
 	state = {
@@ -9,13 +11,20 @@ export default class TodoList extends Component {
 			{ content: 'i am here and there', id: 'sdjkfghdfljkghdfhd' }
 		]
 	};
+
+	addListItem = listItem => {
+		const newListItem = { ...listItem, id: uuid() };
+		this.setState(prevState => ({
+			list: [ ...prevState.list, newListItem ]
+		}));
+	};
 	render() {
 		const list = this.state.list.map(item => (
-			<ListItem content={item.content} id={item.id} />
+			<ListItem content={item.content} id={item.id} key={item.id} />
 		));
 		return (
 			<div>
-				<h1>to do form</h1>
+				<NewToDoForm handleItem={this.addListItem} />
 				{list}
 			</div>
 		);
