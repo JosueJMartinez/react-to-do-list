@@ -5,7 +5,8 @@ export default class ListItem extends Component {
 	state = {
 		content: this.props.content,
 		isEdit: false,
-		isScratched: false
+		isScratched: false,
+		isHovered: false
 	};
 
 	handleDelete = e => {
@@ -40,10 +41,21 @@ export default class ListItem extends Component {
 	render() {
 		return (
 			<li className="ListItem" id={this.props.id}>
-				<span onClick={this.handleDelete}>Delete</span>
+				<span
+					onClick={this.handleDelete}
+					className="trash listItemButtons"
+				>
+					<i className="far fa-trash-alt" />
+				</span>
+
 				{this.state.isEdit ? (
 					<Fragment>
-						<span onClick={this.handleEditClick}>Cancel</span>
+						<span
+							className="edit listItemButtons"
+							onClick={this.handleEditClick}
+						>
+							<i className="far fa-window-close" />
+						</span>
 						<form onSubmit={this.handleEditSubmit}>
 							<input
 								type="text"
@@ -56,7 +68,12 @@ export default class ListItem extends Component {
 					</Fragment>
 				) : (
 					<Fragment>
-						<span onClick={this.handleEditClick}>Edit</span>
+						<span
+							onClick={this.handleEditClick}
+							className="edit listItemButtons"
+						>
+							<i className="fas fa-edit" />
+						</span>
 						<span
 							onClick={this.handleScratch}
 							className={`${this.state.isScratched && 'strike-through'}`}

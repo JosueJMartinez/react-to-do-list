@@ -2,7 +2,8 @@
 	padding: 0;
 	background: #fff;
 	line-height: 40px;
-	color: #666;
+	color: #1a75a2;
+	text-align: left;
 }
 .ListItem .strike-through {
 	text-decoration: line-through;
@@ -11,4 +12,40 @@
 
 .ListItem form {
 	display: inline;
+}
+
+.ListItem:hover span {
+	width: 32px;
+	transform: scale(1, 1);
+}
+
+.ListItem .trash {
+	color: #ffffff;
+	background: #d82207;
+}
+
+.ListItem .edit {
+	margin-right: 32px;
+	color: #ffffff;
+	background: #bdba10;
+}
+
+.ListItem .listItemButtons {
+	width: 0;
+	/* margin-right: 32px; */
+	text-align: center;
+	height: 40px;
+	display: inline-block;
+	transform: scale(0, 1);
+	transition: 0.2s linear;
+}
+
+.ListItem input {
+	/* width: 200px; */
+	padding: 1px 2px;
+	background: none;
+	line-height: 26px;
+	font-size: 20px;
+	color: #1a75a2;
+	border: 1px solid #c0c0c0;
 }
