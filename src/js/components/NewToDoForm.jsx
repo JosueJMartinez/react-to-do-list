@@ -4,11 +4,13 @@ export default class NewToDoForm extends Component {
 	state = {
 		content: ''
 	};
+
 	handleSubmit = e => {
 		e.preventDefault();
 		this.props.handleItem(this.state);
 		this.setState({ content: '' });
 	};
+
 	handleChange = e =>
 		this.setState({
 			[e.target.name]: e.target.value

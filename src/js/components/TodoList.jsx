@@ -24,6 +24,16 @@ export default class TodoList extends Component {
 			list: this.state.list.filter(item => item.id !== id)
 		});
 	};
+
+	editItem = item => {
+		this.setState({
+			list: this.state.list.map(oldItem => {
+				if (oldItem.id === item.id) return item;
+				return oldItem;
+			})
+		});
+	};
+
 	render() {
 		const list = this.state.list.map(item => (
 			<ListItem
@@ -31,6 +41,7 @@ export default class TodoList extends Component {
 				id={item.id}
 				key={item.id}
 				deleteItem={this.deleteItem}
+				editItem={this.editItem}
 			/>
 		));
 		return (
