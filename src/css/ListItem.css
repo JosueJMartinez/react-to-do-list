@@ -4,6 +4,7 @@
 	line-height: 40px;
 	color: #1a75a2;
 	text-align: left;
+	font-size: 1rem;
 }
 .ListItem .strike-through {
 	text-decoration: line-through;
@@ -41,11 +42,17 @@
 }
 
 .ListItem input {
-	width: 198px;
-	padding: 1px 2px;
+	width: 194px;
+	padding: 2px 2px;
 	background: none;
-	line-height: 34px;
-	font-size: 20px;
+	line-height: 30px;
+	font-size: 1rem;
 	color: #1a75a2;
-	border: 1px solid #c0c0c0;
+	border: 3px solid #c0c0c0;
+}
+
+.ListItem input:focus {
+	border: 3px solid #1a75a2;
+	background: white;
+	outline: none;
 }
