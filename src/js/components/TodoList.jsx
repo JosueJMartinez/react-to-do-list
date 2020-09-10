@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import ListItem from './ListItem';
 import { v4 as uuid } from 'uuid';
 import NewToDoForm from './NewToDoForm';
+import '../../css/ToDoList.css';
 
-export default class TodoList extends Component {
+export default class ToDoList extends Component {
 	state = {
 		list: [
 			{ content: 'i am here', id: 'sdjkfghdfljkghdfh' },
 			{ content: 'i am here with another item', id: 'sdjkfghdfljkghdfeh' },
 			{ content: 'i am here and there', id: 'sdjkfghdfljkghdfhd' }
-		]
+		],
+		isOpen: true
 	};
 
 	addListItem = listItem => {
@@ -34,6 +36,10 @@ export default class TodoList extends Component {
 		});
 	};
 
+	handleClick = e => {
+		this.setState({ isOpen: !this.state.isOpen });
+	};
+
 	render() {
 		const list = this.state.list.map(item => (
 			<ListItem
@@ -46,8 +52,21 @@ export default class TodoList extends Component {
 		));
 		return (
 			<div className="ToDoList">
-				<NewToDoForm handleItem={this.addListItem} />
-				{list}
+				<h1 id="title">
+					To-Do List
+					<span id="plus" onClick={this.handleClick}>
+						<i
+							className={`fas fa-${this.state.isOpen
+								? 'minus'
+								: 'plus'}-square`}
+						/>
+					</span>
+				</h1>
+				<NewToDoForm
+					isOpen={this.state.isOpen}
+					handleItem={this.addListItem}
+				/>
+				<ul>{list}</ul>
 			</div>
 		);
 	}

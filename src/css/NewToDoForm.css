@@ -1,0 +1,15 @@
+.NewToDoForm input {
+	width: 230px;
+	padding: 2px 32px;
+	background: none;
+	line-height: 40px;
+	font-size: 20px;
+	color: #1a75a2;
+	border: 3px solid #c0c0c0;
+}
+
+.NewToDoForm input:focus {
+	border: 3px solid #1a75a2;
+	background: white;
+	outline: none;
+}

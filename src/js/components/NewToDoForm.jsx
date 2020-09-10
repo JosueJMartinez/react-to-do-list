@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../../css/NewToDoForm.css';
 
 export default class NewToDoForm extends Component {
 	state = {
@@ -18,7 +19,7 @@ export default class NewToDoForm extends Component {
 
 	render() {
 		return (
-			<div className="NewToDoForm">
+			<div className={`NewToDoForm ${!this.props.isOpen && 'hideInput'}`}>
 				<form onSubmit={this.handleSubmit}>
 					<input
 						type="text"
@@ -27,7 +28,6 @@ export default class NewToDoForm extends Component {
 						name="content"
 						onChange={this.handleChange}
 					/>
-					<button>Add Item</button>
 				</form>
 			</div>
 		);

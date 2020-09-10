@@ -1,12 +1,11 @@
 import React from 'react';
-import logo from '../logo.svg';
 import '../css/App.css';
-import TodoList from './components/TodoList';
+import ToDoList from './components/ToDoList';
 
 function App() {
 	return (
 		<div className="App">
-			<TodoList />
+			<ToDoList />
 		</div>
 	);
 }

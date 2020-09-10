@@ -1,0 +1,14 @@
+.ListItem {
+	padding: 0;
+	background: #fff;
+	line-height: 40px;
+	color: #666;
+}
+.ListItem .strike-through {
+	text-decoration: line-through;
+	color: grey;
+}
+
+.ListItem form {
+	display: inline;
+}

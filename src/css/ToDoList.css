@@ -1,0 +1,39 @@
+.ToDoList {
+	background: #c0c0c0;
+	width: 300px;
+	margin: 100px auto;
+	box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+}
+
+.ToDoList ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.ToDoList li:nth-child(2n) {
+	background: #c0c0c0;
+}
+
+.ToDoList h1 {
+	color: white;
+	background: #1a75a2;
+	margin: 0;
+	padding: 10px 20px;
+	text-transform: uppercase;
+	font-weight: normal;
+	font-size: 24px;
+}
+
+.ToDoList #plus {
+	background: #1a75a2;
+	border: none;
+	color: white;
+	float: right;
+}
+.ToDoList #plus:focus {
+	border: none;
+}
+
+.ToDoList .hideInput {
+	display: none;
+}
