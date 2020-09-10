@@ -9,8 +9,8 @@ export default class ListItem extends Component {
 		this.props.deleteItem(this.props.id);
 	};
 
-	handleEdit = e => {
-		this.setState({ isEdit: true });
+	handleEditClick = e => {
+		this.setState(prevState=> { return {isEdit: !prevState.isEdit} });
 	};
 
 	handleChange = e => {
@@ -22,6 +22,7 @@ export default class ListItem extends Component {
 		return (
 			<div className="ListItem" id={this.props.id}>
 				{this.state.isEdit ? (
+					<form>
 					<input
 						type="text"
 						placeholder="Editing item"
@@ -29,10 +30,14 @@ export default class ListItem extends Component {
 						name="content"
 						onChange={this.handleChange}
 					/>
+						<button onClick={this.handleEditClick}>Cancel</button> 
+					</form>
 				) : (
-					this.props.content
+					<>
+					{this.props.content}
+					<button onClick={this.handleEditClick}>Edit</button></>
 				)}
-				<button onClick={this.handleEdit}>edit</button>
+				
 				<button onClick={this.handleDelete}>delete</button>
 			</div>
 		);
