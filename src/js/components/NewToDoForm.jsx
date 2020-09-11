@@ -19,17 +19,18 @@ export default class NewToDoForm extends Component {
 
 	render() {
 		return (
-			<div className={`NewToDoForm ${!this.props.isOpen && 'hideInput'}`}>
-				<form onSubmit={this.handleSubmit}>
-					<input
-						type="text"
-						placeholder="Add new item to do here"
-						value={this.state.content}
-						name="content"
-						onChange={this.handleChange}
-					/>
-				</form>
-			</div>
+			<form
+				className={`NewToDoForm ${!this.props.isOpen && 'hideInput'}`}
+				onSubmit={this.handleSubmit}
+			>
+				<input
+					type="text"
+					placeholder="Add new item to do here"
+					value={this.state.content}
+					name="content"
+					onChange={this.handleChange}
+				/>
+			</form>
 		);
 	}
 }
