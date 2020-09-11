@@ -16,14 +16,12 @@ export default class ToDoList extends Component {
 
 	componentDidMount() {
 		const list = JSON.parse(localStorage.getItem('ToDoAppList'));
-		this.setState({ list: list });
+		list ? this.setState({ list: list }) : this.setState({ list: [] });
 	}
 
 	addListItem = listItem => {
 		const newListItem = { ...listItem, id: uuid() };
-		let { list } = this.state;
-		list = [ ...list, newListItem ];
-
+		let list = [ ...this.state.list, newListItem ];
 		localStorage.setItem('ToDoAppList', JSON.stringify(list));
 		this.setState(prevState => ({
 			list: [ ...prevState.list, newListItem ]
