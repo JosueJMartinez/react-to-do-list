@@ -6,6 +6,7 @@
 	text-align: left;
 	font-size: 1rem;
 }
+
 .ListItem .strike-through {
 	text-decoration: line-through;
 	color: grey;
@@ -15,10 +16,10 @@
 	display: inline;
 }
 
-.ListItem:hover span {
+/* .ListItem:hover span {
 	width: 32px;
 	transform: scale(1, 1);
-}
+} */
 
 .ListItem .trash {
 	color: #ffffff;
@@ -31,18 +32,24 @@
 	background: #bdba10;
 }
 
+.ListItem .cancel {
+	/* margin-right: px; */
+	color: #ffffff;
+	background: #bdba10;
+}
+
 .ListItem .listItemButtons {
-	width: 0;
-	/* margin-right: 32px; */
+	width: 32px;
+	/* width: 0; */
 	text-align: center;
 	height: 40px;
 	display: inline-block;
-	transform: scale(0, 1);
-	transition: 0.2s linear;
+	/* transform: scale(0, 1); */
+	/* transition: 0.2s linear; */
 }
 
 .ListItem input {
-	width: 258px;
+	width: 226px;
 	padding: 2px 2px;
 	background: none;
 	line-height: 30px;
@@ -51,9 +58,12 @@
 	border: 3px solid #c0c0c0;
 }
 
-.ListItem input:hover {
-	width: 194px;
+/* .ListItem input:hover {
+	width: 226px;
 }
+.ListItem:hover input {
+	width: 226px;
+} */
 
 .ListItem input:focus {
 	border: 3px solid #1a75a2;

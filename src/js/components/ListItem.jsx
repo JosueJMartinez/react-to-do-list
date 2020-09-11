@@ -5,8 +5,7 @@ export default class ListItem extends Component {
 	state = {
 		content: this.props.content,
 		isEdit: false,
-		isScratched: false,
-		isHovered: false
+		isScratched: false
 	};
 
 	handleDelete = e => {
@@ -51,7 +50,7 @@ export default class ListItem extends Component {
 				{this.state.isEdit ? (
 					<Fragment>
 						<span
-							className="edit listItemButtons"
+							className="cancel listItemButtons"
 							onClick={this.handleEditClick}
 						>
 							<i className="far fa-window-close" />
