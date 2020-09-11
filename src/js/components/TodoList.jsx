@@ -14,20 +14,42 @@ export default class ToDoList extends Component {
 		isOpen: true
 	};
 
+	componentDidMount() {
+		const list = JSON.parse(localStorage.getItem('ToDoAppList'));
+		this.setState({ list: list });
+	}
+
 	addListItem = listItem => {
 		const newListItem = { ...listItem, id: uuid() };
+		let { list } = this.state;
+		list = [ ...list, newListItem ];
+
+		localStorage.setItem('ToDoAppList', JSON.stringify(list));
 		this.setState(prevState => ({
 			list: [ ...prevState.list, newListItem ]
 		}));
 	};
 
 	deleteItem = id => {
+		localStorage.setItem(
+			'ToDoAppList',
+			JSON.stringify(this.state.list.filter(item => item.id !== id))
+		);
 		this.setState({
 			list: this.state.list.filter(item => item.id !== id)
 		});
 	};
 
 	editItem = item => {
+		localStorage.setItem(
+			'ToDoAppList',
+			JSON.stringify(
+				this.state.list.map(oldItem => {
+					if (oldItem.id === item.id) return item;
+					return oldItem;
+				})
+			)
+		);
 		this.setState({
 			list: this.state.list.map(oldItem => {
 				if (oldItem.id === item.id) return item;
