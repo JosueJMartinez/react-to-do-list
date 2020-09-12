@@ -27,6 +27,8 @@ export default class ToDoList extends Component {
 		list ? this.setState({ list: list }) : this.setState({ list: [] });
 	}
 
+	// These functions are used for list items
+	// ======================================================================
 	addListItem = listItem => {
 		const newListItem = { ...listItem, id: uuid() };
 		let list = [ ...this.state.list, newListItem ];
@@ -70,8 +72,15 @@ export default class ToDoList extends Component {
 		});
 	};
 
-	handleClick = e => {
-		this.setState({ isOpen: !this.state.isOpen });
+	otherListItemsFalse = id => {
+		this.setState({
+			list: this.state.list.map(item => {
+				if (item.id !== id) {
+					return { ...item, isOpen: false };
+				}
+				return { ...item, isOpen: true };
+			})
+		});
 	};
 
 	toggleFormItem = id => {
@@ -83,16 +92,21 @@ export default class ToDoList extends Component {
 		});
 	};
 
-	otherListItemsFalse = id => {
+	// ==========================================================
+
+	// These functions are used for the form itself
+	// ==========================================================
+	handleClick = e => {
+		this.setState({ isOpen: !this.state.isOpen });
+	};
+
+	closeNewForm = () => {
+		console.log('imhere');
 		this.setState({
-			list: this.state.list.map(item => {
-				if (item.id !== id) {
-					return { ...item, isOpen: false };
-				}
-				return { ...item, isOpen: true };
-			})
+			isOpen: false
 		});
 	};
+	// ===============================================================
 
 	render() {
 		const list = this.state.list.map(item => {
@@ -124,6 +138,7 @@ export default class ToDoList extends Component {
 				<NewToDoForm
 					isOpen={this.state.isOpen}
 					handleItem={this.addListItem}
+					closeNewForm={this.closeNewForm}
 				/>
 				<ul>{list}</ul>
 			</div>

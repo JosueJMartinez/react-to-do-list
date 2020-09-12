@@ -35,6 +35,13 @@ export default class ListItem extends Component {
 		this.setState({ isScratched: !this.state.isScratched });
 	};
 
+	handleKeyDown = e => {
+		if (e.keyCode === 27) {
+			this.props.toggleFormItem(this.props.id);
+			this.setState({ content: '' });
+		}
+	};
+
 	render() {
 		return (
 			<li className="ListItem" id={this.props.id}>
@@ -47,6 +54,7 @@ export default class ListItem extends Component {
 								value={this.state.content}
 								name="content"
 								onChange={this.handleChange}
+								onKeyDown={this.handleKeyDown}
 								autoFocus
 							/>
 						</form>
