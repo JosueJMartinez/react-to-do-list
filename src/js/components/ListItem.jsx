@@ -3,8 +3,7 @@ import '../../css/ListItem.css';
 
 export default class ListItem extends Component {
 	state = {
-		content: this.props.content,
-		isScratched: false
+		content: this.props.content
 	};
 
 	handleDelete = e => {
@@ -32,7 +31,7 @@ export default class ListItem extends Component {
 	};
 
 	handleScratch = e => {
-		this.setState({ isScratched: !this.state.isScratched });
+		this.props.toggleScratch(this.props.id);
 	};
 
 	handleKeyDown = e => {
@@ -75,7 +74,7 @@ export default class ListItem extends Component {
 						</span>
 						<span
 							onClick={this.handleScratch}
-							className={`${this.state.isScratched &&
+							className={`${this.props.isScratched &&
 								'strike-through'} content`}
 						>
 							{this.props.content}

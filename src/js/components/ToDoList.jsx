@@ -60,6 +60,26 @@ export default class ToDoList extends Component {
 		});
 	};
 
+	toggleScratch = id => {
+		localStorage.setItem(
+			'ToDoAppList',
+			JSON.stringify(
+				this.state.list.map(oldItem => {
+					if (oldItem.id === id)
+						return { ...oldItem, isScratched: !oldItem.isScratched };
+					return oldItem;
+				})
+			)
+		);
+		this.setState({
+			list: this.state.list.map(oldItem => {
+				if (oldItem.id === id)
+					return { ...oldItem, isScratched: !oldItem.isScratched };
+				return oldItem;
+			})
+		});
+	};
+
 	otherListItemsFalse = id => {
 		this.setState({
 			list: this.state.list.map(item => {
@@ -107,6 +127,8 @@ export default class ToDoList extends Component {
 					otherListItemsFalse={this.otherListItemsFalse}
 					toggleFormItem={this.toggleFormItem}
 					isOpen={item.isOpen}
+					isScratched={item.isScratched}
+					toggleScratch={this.toggleScratch}
 				/>
 			);
 		});
