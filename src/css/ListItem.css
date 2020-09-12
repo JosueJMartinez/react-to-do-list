@@ -32,6 +32,11 @@
 	background: #bdba10;
 }
 
+.ListItem .content {
+	font-size: 1.2rem;
+	line-height: 38px;
+}
+
 .ListItem .cancel {
 	/* margin-right: px; */
 	color: #ffffff;
@@ -49,13 +54,13 @@
 }
 
 .ListItem input {
-	width: 226px;
-	padding: 2px 2px;
+	width: 254px;
+	padding: 2px 20px;
 	background: none;
 	line-height: 30px;
 	font-size: 1rem;
 	color: #1a75a2;
-	border: 3px solid #c0c0c0;
+	border: 3px solid #1a75a2;
 }
 
 /* .ListItem input:hover {

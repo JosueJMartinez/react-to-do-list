@@ -4,7 +4,6 @@ import '../../css/ListItem.css';
 export default class ListItem extends Component {
 	state = {
 		content: this.props.content,
-		isEdit: false,
 		isScratched: false
 	};
 
@@ -13,18 +12,17 @@ export default class ListItem extends Component {
 	};
 
 	handleEditClick = e => {
-		this.setState(prevState => {
-			return { isEdit: !prevState.isEdit };
-		});
+		this.props.otherListItemsFalse(this.props.id);
 	};
 
 	handleEditSubmit = e => {
 		e.preventDefault();
 		this.props.editItem({
 			content: this.state.content,
-			id: this.props.id
+			id: this.props.id,
+			isOpen: false
 		});
-		this.setState({ isEdit: false });
+		this.props.toggleFormItem(this.props.id);
 	};
 
 	handleChange = e => {
@@ -40,21 +38,8 @@ export default class ListItem extends Component {
 	render() {
 		return (
 			<li className="ListItem" id={this.props.id}>
-				<span
-					onClick={this.handleDelete}
-					className="trash listItemButtons"
-				>
-					<i className="far fa-trash-alt" />
-				</span>
-
-				{this.state.isEdit ? (
+				{this.props.isOpen ? (
 					<Fragment>
-						<span
-							className="cancel listItemButtons"
-							onClick={this.handleEditClick}
-						>
-							<i className="far fa-window-close" />
-						</span>
 						<form onSubmit={this.handleEditSubmit}>
 							<input
 								type="text"
@@ -62,11 +47,18 @@ export default class ListItem extends Component {
 								value={this.state.content}
 								name="content"
 								onChange={this.handleChange}
+								autoFocus
 							/>
 						</form>
 					</Fragment>
 				) : (
 					<Fragment>
+						<span
+							onClick={this.handleDelete}
+							className="trash listItemButtons"
+						>
+							<i className="far fa-trash-alt" />
+						</span>
 						<span
 							onClick={this.handleEditClick}
 							className="edit listItemButtons"
@@ -75,7 +67,8 @@ export default class ListItem extends Component {
 						</span>
 						<span
 							onClick={this.handleScratch}
-							className={`${this.state.isScratched && 'strike-through'}`}
+							className={`${this.state.isScratched &&
+								'strike-through'} content`}
 						>
 							{this.props.content}
 						</span>

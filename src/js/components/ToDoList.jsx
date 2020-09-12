@@ -7,9 +7,17 @@ import '../../css/ToDoList.css';
 export default class ToDoList extends Component {
 	state = {
 		list: [
-			{ content: 'i am here', id: 'sdjkfghdfljkghdfh' },
-			{ content: 'i am here with another item', id: 'sdjkfghdfljkghdfeh' },
-			{ content: 'i am here and there', id: 'sdjkfghdfljkghdfhd' }
+			{ content: 'i am here', id: 'sdjkfghdfljkghdfh', isOpen: false },
+			{
+				content: 'i am here with another item',
+				id: 'sdjkfghdfljkghdfeh',
+				isOpen: false
+			},
+			{
+				content: 'i am here and there',
+				id: 'sdjkfghdfljkghdfhd',
+				isOpen: false
+			}
 		],
 		isOpen: true
 	};
@@ -31,10 +39,16 @@ export default class ToDoList extends Component {
 	deleteItem = id => {
 		localStorage.setItem(
 			'ToDoAppList',
-			JSON.stringify(this.state.list.filter(item => item.id !== id))
+			JSON.stringify(
+				this.state.list.filter(item => item.id !== id).map(item => {
+					return { ...item, isOpen: false };
+				})
+			)
 		);
 		this.setState({
-			list: this.state.list.filter(item => item.id !== id)
+			list: this.state.list.filter(item => item.id !== id).map(item => {
+				return { ...item, isOpen: false };
+			})
 		});
 	};
 
@@ -60,16 +74,41 @@ export default class ToDoList extends Component {
 		this.setState({ isOpen: !this.state.isOpen });
 	};
 
+	toggleFormItem = id => {
+		this.setState({
+			list: this.state.list.map(item => {
+				if (item.id === id) return { ...item, isOpen: !item.isOpen };
+				return item;
+			})
+		});
+	};
+
+	otherListItemsFalse = id => {
+		this.setState({
+			list: this.state.list.map(item => {
+				if (item.id !== id) {
+					return { ...item, isOpen: false };
+				}
+				return { ...item, isOpen: true };
+			})
+		});
+	};
+
 	render() {
-		const list = this.state.list.map(item => (
-			<ListItem
-				content={item.content}
-				id={item.id}
-				key={item.id}
-				deleteItem={this.deleteItem}
-				editItem={this.editItem}
-			/>
-		));
+		const list = this.state.list.map(item => {
+			return (
+				<ListItem
+					content={item.content}
+					id={item.id}
+					key={item.id}
+					deleteItem={this.deleteItem}
+					editItem={this.editItem}
+					otherListItemsFalse={this.otherListItemsFalse}
+					toggleFormItem={this.toggleFormItem}
+					isOpen={item.isOpen}
+				/>
+			);
+		});
 		return (
 			<div className="ToDoList">
 				<h1 id="title">
