@@ -6,19 +6,7 @@ import '../../css/ToDoList.css';
 
 export default class ToDoList extends Component {
 	state = {
-		list: [
-			{ content: 'i am here', id: 'sdjkfghdfljkghdfh', isOpen: false },
-			{
-				content: 'i am here with another item',
-				id: 'sdjkfghdfljkghdfeh',
-				isOpen: false
-			},
-			{
-				content: 'i am here and there',
-				id: 'sdjkfghdfljkghdfhd',
-				isOpen: false
-			}
-		],
+		list: [],
 		isOpen: true
 	};
 
@@ -101,7 +89,6 @@ export default class ToDoList extends Component {
 	};
 
 	closeNewForm = () => {
-		console.log('imhere');
 		this.setState({
 			isOpen: false
 		});

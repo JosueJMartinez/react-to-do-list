@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import '../../css/NewToDoForm.css';
 
 export default class NewToDoForm extends Component {
@@ -27,19 +27,21 @@ export default class NewToDoForm extends Component {
 
 	render() {
 		return (
-			<form
-				className={`NewToDoForm ${!this.props.isOpen && 'hideInput'}`}
-				onSubmit={this.handleSubmit}
-			>
-				<input
-					type="text"
-					placeholder="Add new item to do here"
-					value={this.state.content}
-					name="content"
-					onChange={this.handleChange}
-					onKeyDown={this.handleKeyDown}
-				/>
-			</form>
+			<Fragment>
+				{this.props.isOpen && (
+					<form className={`NewToDoForm `} onSubmit={this.handleSubmit}>
+						<input
+							type="text"
+							placeholder="Add new item to do here"
+							value={this.state.content}
+							name="content"
+							onChange={this.handleChange}
+							onKeyDown={this.handleKeyDown}
+							autoFocus
+						/>
+					</form>
+				)}
+			</Fragment>
 		);
 	}
 }

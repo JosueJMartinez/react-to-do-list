@@ -33,7 +33,3 @@
 .ToDoList #plus:focus {
 	border: none;
 }
-
-.ToDoList .hideInput {
-	display: none;
-}

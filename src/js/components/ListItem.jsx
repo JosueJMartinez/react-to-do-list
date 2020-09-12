@@ -38,7 +38,7 @@ export default class ListItem extends Component {
 	handleKeyDown = e => {
 		if (e.keyCode === 27) {
 			this.props.toggleFormItem(this.props.id);
-			this.setState({ content: '' });
+			this.setState({ content: this.props.content });
 		}
 	};
 
