@@ -60,7 +60,7 @@
 	line-height: 31px;
 	font-size: 1rem;
 	color: #1a75a2;
-	border: 3px solid #1a75a2;
+	border: 3px solid #bdba10;
 }
 
 /* .ListItem input:hover {
@@ -71,7 +71,7 @@
 } */
 
 .ListItem input:focus {
-	border: 3px solid #1a75a2;
+	border: 3px solid #bdba10;
 	background: white;
 	outline: none;
 }
