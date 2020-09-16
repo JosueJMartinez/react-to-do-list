@@ -7,7 +7,7 @@ import '../../css/ToDoList.css';
 export default class ToDoList extends Component {
 	state = {
 		list: [],
-		isOpen: true
+		isOpen: false
 	};
 
 	componentDidMount() {
@@ -15,26 +15,19 @@ export default class ToDoList extends Component {
 		list ? this.setState({ list: list }) : this.setState({ list: [] });
 	}
 
+	componentDidUpdate(prevProps, prevState) {
+		localStorage.setItem('ToDoAppList', JSON.stringify(this.state.list));
+	}
+
 	// These functions are used for list items
 	// ======================================================================
 	addListItem = listItem => {
-		const newListItem = { ...listItem, id: uuid() };
-		let list = [ ...this.state.list, newListItem ];
-		localStorage.setItem('ToDoAppList', JSON.stringify(list));
 		this.setState(prevState => ({
-			list: [ ...prevState.list, newListItem ]
+			list: [ ...prevState.list, { ...listItem, id: uuid() } ]
 		}));
 	};
 
 	deleteItem = id => {
-		localStorage.setItem(
-			'ToDoAppList',
-			JSON.stringify(
-				this.state.list.filter(item => item.id !== id).map(item => {
-					return { ...item, isOpen: false };
-				})
-			)
-		);
 		this.setState({
 			list: this.state.list.filter(item => item.id !== id).map(item => {
 				return { ...item, isOpen: false };
@@ -43,16 +36,6 @@ export default class ToDoList extends Component {
 	};
 
 	editItem = item => {
-		localStorage.setItem(
-			'ToDoAppList',
-			JSON.stringify(
-				this.state.list.map(oldItem => {
-					if (oldItem.id === item.id)
-						return { ...item, isOpen: !item.isOpen };
-					return oldItem;
-				})
-			)
-		);
 		this.setState({
 			list: this.state.list.map(oldItem => {
 				if (oldItem.id === item.id) return item;
@@ -62,16 +45,6 @@ export default class ToDoList extends Component {
 	};
 
 	toggleScratch = id => {
-		localStorage.setItem(
-			'ToDoAppList',
-			JSON.stringify(
-				this.state.list.map(oldItem => {
-					if (oldItem.id === id)
-						return { ...oldItem, isScratched: !oldItem.isScratched };
-					return oldItem;
-				})
-			)
-		);
 		this.setState({
 			list: this.state.list.map(oldItem => {
 				if (oldItem.id === id)
@@ -102,7 +75,6 @@ export default class ToDoList extends Component {
 	};
 
 	// ==========================================================
-
 	// These functions are used for the form itself
 	// ==========================================================
 	handleClick = e => {
