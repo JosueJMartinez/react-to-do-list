@@ -47,7 +47,8 @@ export default class ToDoList extends Component {
 			'ToDoAppList',
 			JSON.stringify(
 				this.state.list.map(oldItem => {
-					if (oldItem.id === item.id) return item;
+					if (oldItem.id === item.id)
+						return { ...item, isOpen: !item.isOpen };
 					return oldItem;
 				})
 			)

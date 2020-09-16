@@ -19,9 +19,9 @@ export default class ListItem extends Component {
 		this.props.editItem({
 			content: this.state.content,
 			id: this.props.id,
-			isOpen: false
+			isOpen: false,
+			isScratched: this.props.isScratched
 		});
-		this.props.toggleFormItem(this.props.id);
 	};
 
 	handleChange = e => {
